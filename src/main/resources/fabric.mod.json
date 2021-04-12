@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "autosmeltenchant",
+  "version": "${version}",
+  "name": "AutosmeltEnchant",
+  "description": "Adds a Autosmelt Enchantment",
+  "authors": [
+    "Ultra"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/autosmeltenchant/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [],
+    "main": [
+      "io.github.ultrusbot.autosmeltenchant.AutosmeltEnchant"
+    ]
+  },
+  "mixins": [
+    "autosmeltenchant.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.16.5"
+  }
+}
