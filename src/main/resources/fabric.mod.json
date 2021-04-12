@@ -7,6 +7,12 @@
   "authors": [
     "Ultra"
   ],
+  "issues": [
+    "https://github.com/UltrusBot/AutosmeltEnchant/issues"
+  ],
+  "sources": [
+    "https://github.com/UltrusBot/AutosmeltEnchant"
+  ],
   "contact": {},
   "license": "MIT",
   "icon": "assets/autosmeltenchant/icon.png",
