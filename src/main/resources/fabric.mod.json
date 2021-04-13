@@ -7,13 +7,10 @@
   "authors": [
     "Ultra"
   ],
-  "issues": [
-    "https://github.com/UltrusBot/AutosmeltEnchant/issues"
-  ],
-  "sources": [
-    "https://github.com/UltrusBot/AutosmeltEnchant"
-  ],
-  "contact": {},
+  "contact": {
+    "issues": "https://github.com/UltrusBot/AutosmeltEnchant/issues",
+    "sources": "https://github.com/UltrusBot/AutosmeltEnchant"
+  },
   "license": "MIT",
   "icon": "assets/autosmeltenchant/icon.png",
   "environment": "*",
@@ -27,8 +24,6 @@
     "autosmeltenchant.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.11.3",
-    "fabric": "*",
-    "minecraft": "1.16.5"
+    "fabricloader": ">=0.11.3"
   }
 }
