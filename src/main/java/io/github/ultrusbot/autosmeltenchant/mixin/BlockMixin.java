@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.SmeltingRecipe;
@@ -35,18 +36,16 @@ public class BlockMixin {
             return;
         }
         for (ItemStack itemStack : returnValue) {
-            Optional<SmeltingRecipe> recipe = world.getRecipeManager().listAllOfType(RecipeType.SMELTING).stream().filter((smeltingRecipe -> {
-                return smeltingRecipe.getIngredients().get(0).test(itemStack);
-            })).findFirst();
+//            Optional<SmeltingRecipe> recipe = world.getRecipeManager().listAllOfType(RecipeType.SMELTING).stream().filter((smeltingRecipe -> smeltingRecipe.getPreviewInputs().get(0).test(itemStack))).findFirst();
+            Optional<SmeltingRecipe> recipe = world.getRecipeManager().getFirstMatch(RecipeType.SMELTING, new SimpleInventory(itemStack), world);
+
             if (recipe.isPresent()) {
-                ItemStack smelted = recipe.get().getOutput();
+                ItemStack smelted = recipe.get().getOutput().copy();
                 smelted.setCount(itemStack.getCount());
                 items.add(smelted);
             } else {
                 items.add(itemStack);
             }
-
-
         }
         cir.setReturnValue(items);
     }
