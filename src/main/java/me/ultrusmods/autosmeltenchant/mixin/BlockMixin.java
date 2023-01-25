@@ -1,6 +1,6 @@
-package io.github.ultrusbot.autosmeltenchant.mixin;
+package me.ultrusmods.autosmeltenchant.mixin;
 
-import io.github.ultrusbot.autosmeltenchant.AutosmeltEnchant;
+import me.ultrusmods.autosmeltenchant.AutosmeltEnchant;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

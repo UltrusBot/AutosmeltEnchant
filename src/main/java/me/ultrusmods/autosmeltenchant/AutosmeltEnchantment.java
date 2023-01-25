@@ -1,4 +1,4 @@
-package io.github.ultrusbot.autosmeltenchant;
+package me.ultrusmods.autosmeltenchant;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;

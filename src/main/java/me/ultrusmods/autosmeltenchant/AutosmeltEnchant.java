@@ -1,9 +1,10 @@
-package io.github.ultrusbot.autosmeltenchant;
+package me.ultrusmods.autosmeltenchant;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class AutosmeltEnchant implements ModInitializer {
 
@@ -12,7 +13,7 @@ public class AutosmeltEnchant implements ModInitializer {
     public void onInitialize() {
     }
     private static Enchantment register(Enchantment enchant, Identifier id) {
-        return Registry.register(Registry.ENCHANTMENT, id, enchant);
+        return Registry.register(Registries.ENCHANTMENT, id, enchant);
 
     }
 }

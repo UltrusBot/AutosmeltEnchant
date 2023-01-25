@@ -5,7 +5,7 @@
   "name": "AutosmeltEnchant",
   "description": "Adds a Autosmelt Enchantment",
   "authors": [
-    "Ultra"
+    "UltrusBot"
   ],
   "contact": {
     "issues": "https://github.com/UltrusBot/AutosmeltEnchant/issues",
@@ -17,7 +17,7 @@
   "entrypoints": {
     "client": [],
     "main": [
-      "io.github.ultrusbot.autosmeltenchant.AutosmeltEnchant"
+      "me.ultrusmods.autosmeltenchant.AutosmeltEnchant"
     ]
   },
   "mixins": [
