@@ -81,7 +81,7 @@ githubRelease {
     }
     owner = "UltrusBot"
     repo = "AutosmeltEnchant"
-    targetCommitish = "1.19.3"
+    targetCommitish = "1.19.4"
     tagName = "v${project.version}"
     body = new File("$rootDir/CHANGELOG.md").getText('UTF-8')
     releaseAssets = [remapJar, remapSourcesJar]
@@ -96,7 +96,7 @@ modrinth {
     versionName = "Smelting Touch v${project.version}"
     uploadFile = remapJar
     changelog = new File("$rootDir/CHANGELOG.md").getText('UTF-8')
-    gameVersions = ["1.19.3"]
+    gameVersions = ["1.19.4"]
     loaders = ["quilt", "fabric"]
     //TODO: Make better description
 //    syncBodyFrom = rootProject.file("README.md").text
@@ -114,7 +114,7 @@ curseforge {
         changelogType = "markdown"
         changelog = new File("$rootDir/CHANGELOG.md").getText('UTF-8')
         releaseType = "release"
-        addGameVersion "1.19.3"
+        addGameVersion "1.19.4"
         mainArtifact(remapJar) {
             displayName = "Smelting Touch v${project.version}"
         }

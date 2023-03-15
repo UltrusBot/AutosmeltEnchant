@@ -40,7 +40,7 @@ public class BlockMixin {
             Optional<SmeltingRecipe> recipe = world.getRecipeManager().getFirstMatch(RecipeType.SMELTING, new SimpleInventory(itemStack), world);
 
             if (recipe.isPresent()) {
-                ItemStack smelted = recipe.get().getOutput().copy();
+                ItemStack smelted = recipe.get().getResult(world.getRegistryManager()).copy();
                 smelted.setCount(itemStack.getCount());
                 items.add(smelted);
             } else {
