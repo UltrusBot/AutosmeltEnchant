@@ -48,6 +48,7 @@ publishMods {
         repository = "UltrusBot/AutosmeltEnchant"
         commitish = "1.20.2"
         accessToken = providers.environmentVariable("GH_TOKEN")
+        tagName = "v$project.version"
     }
 
     dryRun = false
