@@ -1,1 +1,3 @@
-- Updated to 1.19.4
+- Updated to 1.20.2
+- Added Turkish translation (Thanks @Hexasan)
+- Added Ukrainian translation (Thanks @unroman)
