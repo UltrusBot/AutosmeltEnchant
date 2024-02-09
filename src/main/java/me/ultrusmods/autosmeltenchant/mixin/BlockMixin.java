@@ -9,7 +9,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.SmeltingRecipe;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,7 +18,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Mixin(Block.class)
 public class BlockMixin {
@@ -36,11 +34,10 @@ public class BlockMixin {
             return;
         }
         for (ItemStack itemStack : returnValue) {
-//            Optional<SmeltingRecipe> recipe = world.getRecipeManager().listAllOfType(RecipeType.SMELTING).stream().filter((smeltingRecipe -> smeltingRecipe.getPreviewInputs().get(0).test(itemStack))).findFirst();
             var recipe = world.getRecipeManager().getFirstMatch(RecipeType.SMELTING, new SimpleInventory(itemStack), world);
 
             if (recipe.isPresent()) {
-                ItemStack smelted = recipe.get().value().getResult(world.getRegistryManager());
+                ItemStack smelted = recipe.get().value().getResult(world.getRegistryManager()).copy();
                 smelted.setCount(itemStack.getCount());
                 items.add(smelted);
             } else {

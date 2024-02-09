@@ -1,3 +1,1 @@
-- Updated to 1.20.2
-- Added Turkish translation (Thanks @Hexasan)
-- Added Ukrainian translation (Thanks @unroman)
+- Fix #6
