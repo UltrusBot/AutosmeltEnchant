@@ -1,1 +1,2 @@
-- Fix #6
+- Updated to 1.21
+- Mod now supports NeoForge & Fabric
