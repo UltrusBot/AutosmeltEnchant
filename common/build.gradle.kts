@@ -1,10 +1,8 @@
 import me.ultrusmods.smeltingtouch.gradle.Properties
-import me.modmuss50.mpp.PublishModTask
 
 plugins {
     id("conventions.common")
-    id("net.neoforged.moddev")
-    id("me.modmuss50.mod-publish-plugin")
+    alias(libs.plugins.neoforge.moddev)
 }
 
 sourceSets {
@@ -17,7 +15,7 @@ sourceSets {
 neoForge {
     neoFormVersion = Properties.NEOFORM_VERSION
     parchment {
-        minecraftVersion = libs.minecraft.get().version
+        minecraftVersion = Properties.PARCHMENT_MINECRAFT
         mappingsVersion = Properties.PARCHMENT_VERSION
     }
     addModdingDependenciesTo(sourceSets["test"])
@@ -29,9 +27,9 @@ neoForge {
 }
 
 dependencies {
+    compileOnly(group = "org.spongepowered", name = "mixin", version = "0.8.5")
     compileOnly(libs.mixin.extras)
     annotationProcessor(libs.mixin.extras)
-    compileOnly(libs.fabric.mixin)
 }
 
 configurations {

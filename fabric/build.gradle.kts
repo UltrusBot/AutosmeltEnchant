@@ -1,5 +1,4 @@
 import me.ultrusmods.smeltingtouch.gradle.Properties
-import net.fabricmc.loom.task.RemapJarTask
 import org.gradle.jvm.tasks.Jar
 
 plugins {
@@ -17,8 +16,10 @@ repositories {
 }
 dependencies {
     minecraft(libs.minecraft);
-    mappings(loom.officialMojangMappings())
-
+    mappings(loom.layered {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${Properties.PARCHMENT_MINECRAFT}:${Properties.PARCHMENT_VERSION}@zip")
+    })
     modImplementation(libs.fabric.loader)
     modImplementation(libs.fabric.api)
     modLocalRuntime(libs.modmenu)
@@ -50,10 +51,10 @@ loom {
             configName = "Fabric Server"
             setSource(sourceSets["test"])
             ideConfigGenerated(true)
-//            vmArgs("-Dmixin.debug.verbose=true", "-Dmixin.debug.export=true")
+            vmArgs("-Dmixin.debug.verbose=true", "-Dmixin.debug.export=true")
         }
         register("datagen") {
-            server()
+            client()
             configName = "Fabric Datagen"
             setSource(sourceSets["test"])
             ideConfigGenerated(true)
@@ -83,9 +84,7 @@ publishMods {
         projectId = Properties.CURSEFORGE_PROJECT_ID
         accessToken = providers.gradleProperty("CF_API_KEY")
 
-        minecraftVersions.add(libs.minecraft.get().version!!)
-        minecraftVersions.add("1.21.1")
-
+        minecraftVersions.addAll(Properties.SUPPORTED_VERSIONS.asIterable())
         javaVersions.add(JavaVersion.VERSION_21)
 
         clientRequired = true
@@ -96,9 +95,7 @@ publishMods {
         projectId = Properties.MODRINTH_PROJECT_ID
         accessToken = providers.gradleProperty("MODRINTH_TOKEN")
 
-        minecraftVersions.add(libs.minecraft.get().version!!)
-        minecraftVersions.add("1.21.1")
-
+        minecraftVersions.addAll(Properties.SUPPORTED_VERSIONS.asIterable())
     }
 
     github {

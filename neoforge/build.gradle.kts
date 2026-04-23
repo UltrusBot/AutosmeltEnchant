@@ -12,7 +12,7 @@ base.archivesName = base.archivesName.get() + "-neoforge"
 neoForge {
     version = libs.neoforge.get().version
     parchment {
-        minecraftVersion = libs.minecraft.get().version
+        minecraftVersion = Properties.PARCHMENT_MINECRAFT
         mappingsVersion = Properties.PARCHMENT_VERSION
     }
     addModdingDependenciesTo(sourceSets["test"])
@@ -32,7 +32,7 @@ neoForge {
             client()
             gameDirectory.set(file("runs/client"))
             sourceSet = sourceSets["test"]
-            jvmArguments.set(setOf("-Dmixin.debug.verbose=true", "-Dmixin.debug.export=true"))
+//            jvmArguments.set(setOf("-Dmixin.debug.verbose=true", "-Dmixin.debug.export=true"))
         }
         create("server") {
             server()
@@ -59,6 +59,7 @@ tasks {
     }
 }
 
+
 publishMods {
     file.set(tasks.named<Jar>("jar").get().archiveFile)
     modLoaders.add("neoforge")
@@ -71,8 +72,7 @@ publishMods {
         projectId = Properties.CURSEFORGE_PROJECT_ID
         accessToken = providers.gradleProperty("CF_API_KEY")
 
-        minecraftVersions.add(libs.minecraft.get().version!!)
-        minecraftVersions.add("1.21.1")
+        minecraftVersions.addAll(Properties.SUPPORTED_VERSIONS.asIterable())
         javaVersions.add(JavaVersion.VERSION_21)
 
         clientRequired = true
@@ -83,9 +83,7 @@ publishMods {
         projectId = Properties.MODRINTH_PROJECT_ID
         accessToken = providers.gradleProperty("MODRINTH_TOKEN")
 
-        minecraftVersions.add(libs.minecraft.get().version!!)
-        minecraftVersions.add("1.21.1")
-
+        minecraftVersions.addAll(Properties.SUPPORTED_VERSIONS.asIterable())
     }
 
     github {

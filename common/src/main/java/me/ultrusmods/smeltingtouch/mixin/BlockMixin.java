@@ -1,5 +1,6 @@
 package me.ultrusmods.smeltingtouch.mixin;
 
+import me.ultrusmods.smeltingtouch.enchantment.SmeltingRecipeOutputAccess;
 import me.ultrusmods.smeltingtouch.enchantment.SmeltingTouchEffectComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -8,7 +9,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -38,10 +38,10 @@ public class BlockMixin {
         }
 
         for (ItemStack drop : originalDrops) {
-            var recipe = level.getRecipeManager().getRecipeFor(RecipeType.SMELTING, new SingleRecipeInput(drop), level);
+            var recipe = level.recipeAccess().getRecipeFor(RecipeType.SMELTING, new SingleRecipeInput(drop), level);
 
-            if (recipe.isPresent()) {
-                ItemStack smelted = recipe.get().value().getResultItem(level.registryAccess()).copy();
+            if (recipe.isPresent() && recipe.get().value() instanceof SmeltingRecipeOutputAccess smeltingRecipeOutputAccess) {
+                ItemStack smelted = smeltingRecipeOutputAccess.getOutputForSmeltingTouch();
                 smelted.setCount(drop.getCount());
                 drops.add(smelted);
             } else {
