@@ -1,9 +1,9 @@
 package me.ultrusmods.smeltingtouch.gradle
 
 object Properties {
-    const val MOD = "1.4.0"
+    const val MOD = "1.4.1"
 
-    const val JAVA = 21
+    const val JAVA = 25
 
     const val GROUP = "me.ultrusmods"
     const val MOD_NAME = "SmeltingTouch"
@@ -20,15 +20,12 @@ object Properties {
     const val GITHUB_COMMITISH = "1.21.11"
 
     const val NEOFORGE_LOADER_RANGE = "[4,)"
-    const val NEOFORGE_MINECRAFT_RANGE = "[1.21.11]"
+    const val NEOFORGE_MINECRAFT_RANGE = "[26.2]"
 
     const val FABRIC_LOADER_RANGE = ">=0.15"
-    const val FABRIC_MINECRAFT_RANGE = ">=1.21.11-"
+    const val FABRIC_MINECRAFT_RANGE = ">=26.2-"
 
-    val SUPPORTED_VERSIONS = arrayOf("1.21.11")
+    val SUPPORTED_VERSIONS = arrayOf("26.2")
 
-    const val NEOFORM_VERSION = "1.21.11-20251209.172050"
-
-    const val PARCHMENT_MINECRAFT = "1.21.11"
-    const val PARCHMENT_VERSION = "2025.12.20"
+    const val NEOFORM_VERSION = "26.2-1"
 }

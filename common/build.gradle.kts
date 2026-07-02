@@ -14,10 +14,6 @@ sourceSets {
 }
 neoForge {
     neoFormVersion = Properties.NEOFORM_VERSION
-    parchment {
-        minecraftVersion = Properties.PARCHMENT_MINECRAFT
-        mappingsVersion = Properties.PARCHMENT_VERSION
-    }
     addModdingDependenciesTo(sourceSets["test"])
 
     val at = file("src/main/resources/${Properties.MOD_ID}.cfg")

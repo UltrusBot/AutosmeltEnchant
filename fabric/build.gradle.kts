@@ -3,7 +3,7 @@ import org.gradle.jvm.tasks.Jar
 
 plugins {
     id("conventions.loader")
-    id("fabric-loom")
+    id("net.fabricmc.fabric-loom")
     id("me.modmuss50.mod-publish-plugin")
 }
 base.archivesName = base.archivesName.get() + "-fabric"
@@ -15,23 +15,15 @@ repositories {
     }
 }
 dependencies {
-    minecraft(libs.minecraft);
-    mappings(loom.layered {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${Properties.PARCHMENT_MINECRAFT}:${Properties.PARCHMENT_VERSION}@zip")
-    })
-    modImplementation(libs.fabric.loader)
-    modImplementation(libs.fabric.api)
-    modLocalRuntime(libs.modmenu)
+    minecraft(libs.minecraft)
+    implementation(libs.fabric.loader)
+    implementation(libs.fabric.api)
 }
 
 loom {
     val aw = file("src/main/resources/${Properties.MOD_ID}.accesswidener");
     if (aw.exists())
         accessWidenerPath.set(aw)
-    mixin {
-        defaultRefmapName.set("${Properties.MOD_ID}.refmap.json")
-    }
     mods {
         register(Properties.MOD_ID) {
             sourceSet(sourceSets["main"])
@@ -73,7 +65,7 @@ tasks {
 }
 
 publishMods {
-    file.set(tasks.named<Jar>("remapJar").get().archiveFile)
+    file.set(tasks.named<Jar>("jar").get().archiveFile)
     modLoaders.add("fabric")
     changelog = rootProject.file("CHANGELOG.md").readText()
     displayName = "Smelting Touch Fabric ${Properties.MOD}+${libs.minecraft.get().version}"
@@ -85,7 +77,7 @@ publishMods {
         accessToken = providers.gradleProperty("CF_API_KEY")
 
         minecraftVersions.addAll(Properties.SUPPORTED_VERSIONS.asIterable())
-        javaVersions.add(JavaVersion.VERSION_21)
+        javaVersions.add(JavaVersion.VERSION_25)
 
         clientRequired = true
         serverRequired = true
